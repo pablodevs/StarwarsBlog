@@ -1,3 +1,7 @@
+/*===== General styles import =====*/
+@import "./colors";
+@import "./fonts";
+
 /*===== Home Styles =====*/
 .home-wrapper {
     display: flex;
@@ -7,17 +11,64 @@
 }
 
 /*===== CardsContaines Styles =====*/
-.section {
-    border: 1px solid black;
-    
-    margin: 4rem 0 2rem 0;
-    padding: 2rem;
+.section {    
+    margin: 2rem 0 0 0;
+    padding-block: 2rem;
     overflow-x: scroll;
     overflow-y: hidden;
 }
+.content-title {
+	border-block: 1px solid #dc354570;
+    margin-bottom: 1.5rem;
+}
+
+/*===== Card Styles =====*/
 .cards-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: none;
+    margin-inline: -1rem;
 }
-/*===== Card Styles =====*/
+.card-title {
+    color: white;
+    &:hover {
+    color: #DC3545;
+    }
+}
+.card {
+    min-width: 266px;
+    min-height: 446px;
+}
+.card-body, .card {
+    background-color: #282727;
+    border: none;
+}
+.card-body {
+    border-top: 3px solid #9E4F60;
+    max-height: 180px;
+}
+.card-description {
+    overflow-y: hidden;
+    height: 69px;
+    width: 100%;
+    margin-bottom: 0.7rem;
+
+    &::before {
+        content: "→";
+        float: right;
+        position: relative;
+        bottom: -67%;
+        width: 100%;
+        margin-left: -100%;
+        padding-right: 4px;
+        padding-bottom: 0.3em;
+        letter-spacing: 0.1em;
+        height: 30px;
+        color: transparent;
+        background-color: transparent;
+        background-image: -webkit-linear-gradient(bottom, #282727 4%, rgba(40, 39, 39, 0.9) 30%, rgba(40, 39, 39, 0));
+        background-image: linear-gradient(to top, #282727 4%, #282727e6 30%, #28272700);
+        left: 0%;
+    }
+}

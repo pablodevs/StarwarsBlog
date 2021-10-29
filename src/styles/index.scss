@@ -1,8 +1,10 @@
 /*===== General styles import =====*/
 @import "./colors";
 @import "./fonts";
+
 /*===== Views styles import =====*/
 @import "./home";
+@import "./details";
 
 /*===== General =====*/
 *, *::before, *::after {
@@ -10,22 +12,34 @@
 }
 
 body {
-    color: white;
+    color: #9E9E9E;
     line-height: 1.6;
 }
-
+p {
+    margin: 0;
+}
 .webpage {
     position: relative;
 }
 
-h1,h2,h3,h4,h5 {
-    color: $red;
+a {
+    text-decoration: none;
+}
+
+button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
+    &:active, &:focus, &:focus-visible, &:active:focus {
+        box-shadow: none;
+    }
+}
+
+.container, .container-fluid {
+    padding: 0;
 }
 
 /*===== Background =====*/
 .background {
     background-image: url("../img/background.png");
-    background-repeat: repeat-y;
+    background-repeat: repeat;
     position: relative; 
     min-height: 100%;
     width: 100%;
