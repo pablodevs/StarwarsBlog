@@ -8,6 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicles: []
 		},
 		actions: {
+			forceRender: () => setStore({}), // Force render without change data
+
 			login: function() {
 				setStore({ loggedIn: true }); // si el usuario se logea, true
 			},
