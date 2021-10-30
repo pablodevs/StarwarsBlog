@@ -12,9 +12,9 @@
 
 /*===== CardsContaines Styles =====*/
 .section {    
-    margin: 2rem 0 0 0;
+    margin-top: 2rem;
     padding-block: 2rem;
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
 }
 .content-title {
@@ -23,30 +23,43 @@
 }
 
 /*===== Card Styles =====*/
+$card-boder-radius: 6px;
+
 .cards-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border: none;
+    padding-bottom: 1.5rem;
     margin-inline: -1rem;
-}
-.card-title {
-    color: white;
-    &:hover {
-    color: #DC3545;
-    }
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-color: #282727 #0dcaf08f; // Firefox
 }
 .card {
     min-width: 266px;
     min-height: 446px;
 }
+.card-img-top {
+    border-top-left-radius: $card-boder-radius;
+    border-top-right-radius: $card-boder-radius;
+}
+.card-title {
+    color: white;
+
+    &:hover {
+    color: #DC3545;
+    }
+}
 .card-body, .card {
     background-color: #282727;
     border: none;
 }
-.card-body {
+div.card-body {
+    padding: 0.8rem;
     border-top: 3px solid #9E4F60;
     max-height: 180px;
+    border-radius: 0 0 $card-boder-radius $card-boder-radius;
 }
 .card-description {
     overflow-y: hidden;
