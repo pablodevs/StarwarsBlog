@@ -4,7 +4,7 @@ import { CardsContainer } from "../component/cardscontainer.js";
 
 export const Home = () => (
 	<div className="home-wrapper">
-		<CardsContainer content="charaters" />
+		<CardsContainer content="characters" />
 		<CardsContainer content="planets" />
 		<CardsContainer content="vehicles" />
 	</div>
