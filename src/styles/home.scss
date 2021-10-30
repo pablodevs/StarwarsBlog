@@ -34,11 +34,11 @@ $card-boder-radius: 6px;
     margin-inline: -1rem;
     overflow-x: scroll;
     overflow-y: hidden;
-    scrollbar-color: #282727 #0dcaf08f; // Firefox
+    scrollbar-color: #0dcaf08f #282727 ; // Firefox
 }
 .card {
     min-width: 266px;
-    min-height: 446px;
+    min-height: 351px;
 }
 .card-img-top {
     border-top-left-radius: $card-boder-radius;
@@ -58,7 +58,7 @@ $card-boder-radius: 6px;
 div.card-body {
     padding: 0.8rem;
     border-top: 3px solid #9E4F60;
-    max-height: 180px;
+    // max-height: 180px;
     border-radius: 0 0 $card-boder-radius $card-boder-radius;
 }
 .card-description {

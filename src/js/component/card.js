@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext.js";
 
 export const Card = props => {
-	const [like, setLike] = useState(false);
+	const { store, actions } = useContext(Context);
 
 	const handleLike = e => {
-		setLike(!like);
+		props.like ? actions.removeFav(props.category, e.target.id) : actions.addFav(props.category, e.target.id);
 	};
 
 	return (
@@ -26,8 +27,12 @@ export const Card = props => {
 				<Link to="/details" className="btn btn-outline-info">
 					Learn More!
 				</Link>
-				<button onClick={handleLike} className="btn btn-outline-warning float-end">
-					{like ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
+				<button onClick={handleLike} className="btn btn-outline-warning float-end" id={props.ID}>
+					{props.like ? (
+						<i className="fas fa-heart" id={props.ID} />
+					) : (
+						<i className="far fa-heart" id={props.ID} />
+					)}
 				</button>
 			</div>
 		</div>
@@ -37,5 +42,8 @@ export const Card = props => {
 Card.propTypes = {
 	imageUrl: PropTypes.string,
 	title: PropTypes.string,
-	cardContent: PropTypes.string
+	cardContent: PropTypes.string,
+	category: PropTypes.string,
+	ID: PropTypes.string,
+	like: PropTypes.bool
 };

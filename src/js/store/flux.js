@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			loggedIn: false, // ejemplo de contexto de login
-			todos: [], // ejemplo de contexto de todo list
+			favorites: [], // ejemplo de contexto de favs list
 			characters: [],
 			planets: [],
 			vehicles: []
@@ -11,9 +11,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 			login: function() {
 				setStore({ loggedIn: true }); // si el usuario se logea, true
 			},
-			addtodo: todo => {
+			addFav: (category, uid) => {
+				// si el usuario añade elementos, los incluimos en la lista global
 				const store = getStore();
-				setStore({ todos: [...store.todos, todo] }); // si el usuario añade elementos, los incluimos en la lista global
+				setStore({
+					favorites: [
+						...store.favorites,
+						{
+							category: category,
+							id: uid
+						}
+					]
+				});
+
+				// Actualiza los likes
+				let storeAux = {};
+				storeAux[category] = store[category].map(element => {
+					if (element.uid === uid) {
+						element.liked = true;
+					}
+					return element;
+				});
+				setStore(storeAux);
+			},
+			removeFav: (category, uid) => {
+				// si el usuario añade elementos, los incluimos en la lista global
+				const store = getStore();
+				let position;
+				store.favorites.forEach((element, index) => {
+					if (element.category === category && element.id === uid) {
+						position = index;
+					}
+				});
+				store.favorites.splice(position, 1);
+				setStore({
+					favorites: [...store.favorites]
+				});
+
+				// Actualiza los likes
+				let storeAux = {};
+				storeAux[category] = store[category].map(element => {
+					if (element.uid === uid) {
+						element.liked = false;
+					}
+					return element;
+				});
+				setStore(storeAux);
 			},
 			loadData: category => {
 				let endUrl = category === "characters" ? "people" : category;

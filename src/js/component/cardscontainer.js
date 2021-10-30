@@ -17,7 +17,10 @@ export const CardsContainer = props => {
 				{store[props.content].map(data => {
 					return (
 						<Card
+							like={data.liked}
 							key={data.uid}
+							ID={data.uid}
+							category={props.content}
 							imageUrl={`${baseurl}/${data.uid}.jpg`}
 							title={data.name}
 							cardContent={cardContent}
