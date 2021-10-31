@@ -20,11 +20,20 @@ const injectContext = PassedComponent => {
 			})
 		);
 
+		// Only at the beginning. Equal to window.onload event
 		useEffect(() => {
-			state.actions.loadData("characters"); // carga los Characters
-			state.actions.loadData("planets"); // carga los Planetas
-			state.actions.loadData("vehicles"); // carga los Vehículos
+			if (window.localStorage["store"] !== undefined) {
+				state.store = JSON.parse(localStorage.getItem("store"));
+				state.actions.forceRender();
+			} else {
+				state.actions.loadData("characters"); // carga los Characters
+				state.actions.loadData("planets"); // carga los Planetas
+				state.actions.loadData("vehicles"); // carga los Vehículos
+			}
 		}, []);
+
+		// Every time store changes, also at the beginning.
+		useEffect(() => localStorage.setItem("store", JSON.stringify(state.store)));
 
 		// The initial value for the context is not null anymore, but the current state of this component,
 		// the context will now have a getStore, getActions and setStore functions available, because they were declared
