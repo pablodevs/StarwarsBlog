@@ -8,6 +8,11 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState(false); // indicates if DD is showed
 
+	const topFunction = () => {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	};
+
 	const handleClickMenu = e => {
 		setState(!state);
 		//e.preventDefault();
@@ -29,7 +34,7 @@ export const Navbar = () => {
 		<div className="container-fluid sticky-top nav-wrapper">
 			<nav className="container navbar navbar-expand-lg p-2">
 				<div className="container-fluid">
-					<Link to="/">
+					<Link to="/" onClick={topFunction}>
 						<img src={starwarsImage} width="100" />
 					</Link>
 					<button
