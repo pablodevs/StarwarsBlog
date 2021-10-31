@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			login: function() {
 				setStore({ loggedIn: true }); // si el usuario se logea, true
 			},
+
 			addFav: (category, uid) => {
 				// si el usuario añade elementos, los incluimos en la lista global
 				const store = getStore();
@@ -36,6 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				setStore(storeAux);
 			},
+
 			removeFav: (category, uid) => {
 				// si el usuario añade elementos, los incluimos en la lista global
 				const store = getStore();
@@ -60,6 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				setStore(storeAux);
 			},
+
 			loadData: category => {
 				let endUrl = category === "characters" ? "people" : category;
 				fetch(`https://www.swapi.tech/api/${endUrl}/`, {

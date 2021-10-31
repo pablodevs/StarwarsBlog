@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
+import notfound from "../../img/notfound.png";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
@@ -14,7 +15,15 @@ export const Card = props => {
 		<div className="card mx-3">
 			<div className="card-img-wrapper">
 				<Link to="/details">
-					<img src={props.imageUrl} className="card-img-top" alt="some star wars content" />
+					{/* <img alt="some star wars content" /> */}
+					<img
+						src={props.imageUrl}
+						onError={e => {
+							e.target.style.height = "266px";
+							e.target.style.objectFit = "cover";
+							e.target.src = notfound;
+						}}
+						className="card-img-top"></img>
 				</Link>
 			</div>
 			<div className="card-body">
