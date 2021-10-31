@@ -52,7 +52,7 @@ $card-boder-radius: 6px;
     }
 }
 .card-body, .card {
-    background-color: #282727;
+    background-color: $gray;
     border: none;
     background-image: url("https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png");
     background-size: 7px;
@@ -61,8 +61,7 @@ $card-boder-radius: 6px;
 }
 div.card-body {
     padding: 0.8rem;
-    border-top: 2px solid #9E4F60;
-    // max-height: 180px;
+    border-top: 2px solid $border-red;
     border-radius: 0 0 $card-boder-radius $card-boder-radius;
 }
 .card-description {
@@ -84,8 +83,8 @@ div.card-body {
         height: 30px;
         color: transparent;
         background-color: transparent;
-        background-image: -webkit-linear-gradient(bottom, #282727 4%, rgba(40, 39, 39, 0.9) 30%, rgba(40, 39, 39, 0));
-        background-image: linear-gradient(to top, #282727 4%, #282727e6 30%, #28272700);
+        background-image: -webkit-linear-gradient(bottom, $gray 4%, rgba(40, 39, 39, 0.9) 30%, rgba(40, 39, 39, 0));
+        background-image: linear-gradient(to top, $gray 4%, #282727e6 30%, #28272700);
         left: 0%;
     }
 }

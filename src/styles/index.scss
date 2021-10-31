@@ -32,6 +32,10 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
     }
 }
 
+.row {
+    margin: 0;
+}
+
 .container, .container-fluid {
     padding: 0;
 }
@@ -40,8 +44,9 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
 .background {
     background-image: url("../img/background.png");
     background-repeat: repeat;
+    background-size: contain;
     position: relative; 
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     
     &::before {
@@ -58,6 +63,7 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
 /*===== Navbar =====*/
 .nav-wrapper {
     background-color: #000000e0;
+    border-bottom: 1px solid #077b924d;
 }
 .nav-link {
     color: white;
@@ -95,4 +101,7 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
     background: none;
     border: none;
     float: right;
+}
+.form-control:focus {
+    box-shadow: none;
 }

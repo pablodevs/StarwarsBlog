@@ -7,6 +7,7 @@ import starwarsImage from "../../img/star-wars-logo.png";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState(false); // indicates if DD is showed
+	const [input, setInput] = useState("");
 
 	const topFunction = () => {
 		document.body.scrollTop = 0;
@@ -16,6 +17,14 @@ export const Navbar = () => {
 	const handleClickMenu = e => {
 		setState(!state);
 		//e.preventDefault();
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		// your code here...
+
+		setInput("");
 	};
 
 	const maxlenName = 15;
@@ -94,15 +103,17 @@ export const Navbar = () => {
 								</div>
 							</li>
 						</ul>
-						<form className="d-flex">
+						<form className="d-flex" onSubmit={handleSubmit}>
 							<input
+								onChange={e => setInput(e.target.value)}
+								value={input}
 								className="form-control me-2"
 								type="search"
 								placeholder="Search"
 								aria-label="Search"
 							/>
-							<button className="btn btn-outline-info" type="submit">
-								Search
+							<button className="btn btn-outline-info" type="submit" style={{ whiteSpace: "nowrap" }}>
+								<i className="fas fa-search pe-2"></i>Search
 							</button>
 						</form>
 					</div>
