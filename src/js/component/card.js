@@ -15,7 +15,6 @@ export const Card = props => {
 		<div className="card mx-3">
 			<div className="card-img-wrapper">
 				<Link to="/details">
-					{/* <img alt="some star wars content" /> */}
 					<img
 						src={props.imageUrl}
 						onError={e => {
@@ -23,7 +22,8 @@ export const Card = props => {
 							e.target.style.objectFit = "cover";
 							e.target.src = notfound;
 						}}
-						className="card-img-top"></img>
+						className="card-img-top"
+					/>
 				</Link>
 			</div>
 			<div className="card-body">

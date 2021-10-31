@@ -11,7 +11,7 @@ export const CardsContainer = props => {
 	let baseurl = `https://starwars-visualguide.com/assets/img/${props.content}`;
 
 	return (
-		<div className="container section">
+		<div className="container section" id={props.content}>
 			<h2 className="text-danger content-title">{props.content.toUpperCase()}</h2>
 			<div className="cards-wrapper">
 				{store[props.content].map(data => {
