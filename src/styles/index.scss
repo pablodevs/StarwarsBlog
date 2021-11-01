@@ -9,21 +9,25 @@
 /*===== General =====*/
 *, *::before, *::after {
     box-sizing: border-box;
+    transition: 0.3s;
 }
 
 body {
     color: #9E9E9E;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 p {
     margin: 0;
 }
 .webpage {
     position: relative;
+    height: 100%;
 }
 
 a {
     text-decoration: none;
+    color: $blue
 }
 
 button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
@@ -32,8 +36,9 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
     }
 }
 
-.row {
+.row, .row > * {
     margin: 0;
+    padding: 0;
 }
 
 .container, .container-fluid {
@@ -45,9 +50,9 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
     background-image: url("../img/background.png");
     background-repeat: repeat;
     background-size: contain;
-    position: relative; 
-    height: 100vh;
-    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
     
     &::before {
         content: "";
@@ -71,7 +76,7 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
     text-align: center;
 
     &:hover {
-        color: #0dcaf08f;
+        color: $a-hover;
     }
     &:focus {
         color: white;
@@ -79,7 +84,7 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
 }
 @media screen and (max-width: 992px) {
     .nav-link:hover {
-        background-color: #0dcaf08f;
+        background-color: $a-hover;
         color: white;
     }
 }
@@ -92,9 +97,14 @@ button.btn, .btn, a.btn-outline-info, .btn-outline-warning {
 .dropdown-toggle {
     cursor: pointer;
 }
-.dropdown-item:active {
+.dropdown-item:hover {
+    background-color: $light-red;
+}
+.fav-link {
     color: black;
-    background-color: #dc354552;
+    &:hover {
+        color:white
+    }
 }
 .trash-button {
     color: $red;

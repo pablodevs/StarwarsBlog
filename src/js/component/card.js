@@ -14,7 +14,7 @@ export const Card = props => {
 	return (
 		<div className="card mx-3">
 			<div className="card-img-wrapper">
-				<Link to="/details">
+				<Link to={"/details/" + props.category + "/" + props.ID}>
 					<img
 						src={props.imageUrl}
 						onError={e => {
@@ -27,14 +27,14 @@ export const Card = props => {
 				</Link>
 			</div>
 			<div className="card-body">
-				<Link to="/details">
+				<Link to={"/details/" + props.category + "/" + props.ID}>
 					<h5 className="card-title">{props.title}</h5>
 				</Link>
 				<div className="card-description">
-					<p className="card-text">{props.cardContent}</p>
+					<p>{props.cardContent}</p>
 				</div>
-				<Link to="/details" className="btn btn-outline-info">
-					Learn More!
+				<Link to={"/details/" + props.category + "/" + props.ID} className="btn btn-outline-info">
+					Learn More
 				</Link>
 				<button onClick={handleLike} className="btn btn-outline-warning float-end" id={props.ID}>
 					{props.like ? (

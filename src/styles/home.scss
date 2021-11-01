@@ -4,6 +4,7 @@
 
 /*===== Home Styles =====*/
 .home-wrapper {
+    margin-bottom: -3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,7 +19,7 @@
     padding-top: 4rem;
 }
 .content-title {
-	border-block: 1px solid #dc354570;
+	border-block: 1px solid $light-red;
     margin-bottom: 1.5rem;
 }
 
@@ -34,18 +35,40 @@ $card-boder-radius: 6px;
     margin-inline: -1rem;
     overflow-x: scroll;
     overflow-y: hidden;
-    scrollbar-color: #0dcaf08f #282727 ; // Firefox
+    scrollbar-color: $a-hover #282727 ; // Firefox
 }
 .card {
     min-width: 266px;
     min-height: 351px;
 }
+.card-img-wrapper {
+    overflow: hidden;
+}
 .card-img-top {
     border-top-left-radius: $card-boder-radius;
     border-top-right-radius: $card-boder-radius;
+    transition: transform .5s ease;
+    -o-transition: transform .5s ease;
+    -ms-transition: transform .5s ease;
+    -moz-transition: transform .5s ease;
+    -webkit-transition: transform .5s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        -o-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        
+        transform-origin: center;
+        -o-transform-origin: center;
+        -ms-transform-origin: center;
+        -moz-transform-origin: center;
+        -webkit-transform-origin: center;
+    }
 }
 .card-title {
-    color: white;
+    color: $light;
 
     &:hover {
     color: #DC3545;

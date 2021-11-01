@@ -26,11 +26,13 @@ const Layout = () => {
 								<Route exact path="/">
 									<Home />
 								</Route>
-								<Route exact path="/details">
+								<Route exact path="/details/:category/:uid">
 									<Details />
 								</Route>
 								<Route>
-									<h1>Page not found!</h1>
+									<h5 style={{ textAlign: "center", marginTop: "3rem" }}>
+										Error 404: Page not found
+									</h5>
 								</Route>
 							</Switch>
 							<Footer />

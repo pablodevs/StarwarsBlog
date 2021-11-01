@@ -81,8 +81,15 @@ export const Navbar = () => {
 									<div className={`dropdown-menu ${state ? "show" : ""}`}>
 										{store.favorites.length > 0 ? (
 											store.favorites.map((elem, index) => (
-												<div key={index} className="dropdown-item" style={{ width: "12em" }}>
-													<span>{getName(elem.category, elem.id)}</span>
+												<div
+													key={index}
+													className="dropdown-item d-flex"
+													style={{ width: "12em" }}>
+													<Link
+														className="flex-grow-1 fav-link"
+														to={"/details/" + elem.category + "/" + elem.id}>
+														<span className="hola">{getName(elem.category, elem.id)}</span>
+													</Link>
 													<button className="trash-button">
 														<i
 															className="fas fa-trash"

@@ -12,7 +12,7 @@ export const CardsContainer = props => {
 
 	return (
 		<div className="container section" id={props.content}>
-			<h2 className="text-danger content-title">{props.content.toUpperCase()}</h2>
+			<h2 className="text-danger content-title">{props.content}</h2>
 			<div className="cards-wrapper">
 				{store[props.content].map(data => {
 					return (
