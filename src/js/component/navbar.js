@@ -33,15 +33,16 @@ export const Navbar = () => {
 				if (input != "") {
 					let userItem = itemsList.find(elem => elem.name.toLowerCase() === input.toLowerCase());
 					if (userItem) {
-						setInput(userItem.name);
 						setSuggestions([]);
 						history.push(`/details/${userItem.category}/${userItem.uid}`);
+						resetHooks();
 					}
 				}
 			} else {
 				setSuggestions([]);
 				setSelected(-1);
 				history.push(`/details/${suggestions[selected].category}/${suggestions[selected].uid}`);
+				resetHooks();
 			}
 		} else if (suggestions.length) {
 			if (e.key === "ArrowDown") selected === suggestions.length - 1 ? setSelected(0) : setSelected(selected + 1);
@@ -154,7 +155,10 @@ export const Navbar = () => {
 								</div>
 							</li>
 						</ul>
-						<form className="d-flex search-form" onKeyDown={handleSearchKeyDown}>
+						<form
+							className="d-flex search-form"
+							onSubmit={e => e.preventDefault()}
+							onKeyDown={handleSearchKeyDown}>
 							<div className="search-icon">
 								<i className="fas fa-search"></i>
 							</div>
@@ -165,7 +169,7 @@ export const Navbar = () => {
 							) : null}
 							<input
 								onChange={handleSearchOnChange}
-								value={input}
+								value={suggestions[selected] ? suggestions[selected].name : input}
 								className="form-control search-input"
 								type="search"
 								placeholder="Search Star Wars..."
@@ -179,13 +183,8 @@ export const Navbar = () => {
 												className={`suggestion-link ${
 													selected === idx ? "suggestion-active" : ""
 												}`}
-												// className="suggestion-link"
 												to={"/details/" + elem.category + "/" + elem.uid}
-												onClick={() => {
-													setInput(elem.name);
-													setSuggestions([]);
-													setSelected(-1);
-												}}>
+												onClick={resetHooks}>
 												{elem.name}
 											</Link>
 										</li>

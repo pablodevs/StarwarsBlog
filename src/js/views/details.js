@@ -12,7 +12,7 @@ export const Details = props => {
 	return store[params.category].map(element => {
 		if (element.uid === params.uid) {
 			return (
-				<div className="container section">
+				<div className="container section" key={Math.floor(Math.random() * 10000)}>
 					<div className="row">
 						<div className="col-lg-6 col-12 details-content">
 							<img
