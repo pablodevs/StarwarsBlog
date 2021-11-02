@@ -76,6 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let storeAux = {};
 						storeAux[category] = data.results.map(e => {
 							e.liked = false;
+							e.category = category;
 							return e;
 						});
 						setStore(storeAux);

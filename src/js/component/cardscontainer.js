@@ -4,7 +4,7 @@ import { Card } from "./card.js";
 import { Context } from "../store/appContext.js";
 
 export const CardsContainer = props => {
-	const { store, actions } = useContext(Context);
+	const { store } = useContext(Context);
 
 	let cardContent =
 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
@@ -12,7 +12,7 @@ export const CardsContainer = props => {
 
 	return (
 		<div className="container section" id={props.content}>
-			<h2 className="text-danger content-title">{props.content}</h2>
+			<h2 className="text-danger content-title text-center text-md-start">{props.content}</h2>
 			<div className="cards-wrapper">
 				{store[props.content].map(data => {
 					return (

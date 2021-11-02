@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import starwarsImage from "../../img/star-wars-logo.png";
@@ -8,8 +8,18 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState(false); // indicates if DD is showed
 	const [input, setInput] = useState("");
+	const [suggestions, setSuggestions] = useState([]);
+	const [searchDel, setSearchDel] = useState(false);
+	const [cont, setCont] = useState(-1);
+	const [selected, setSelected] = useState({ key: null });
+
+	const itemsList = [...store.characters, ...store.planets, ...store.vehicles];
+	let history = useHistory();
+	const maxlenName = 15;
 
 	const topFunction = () => {
+		setInput("");
+		setSearchDel(false);
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
 	};
@@ -19,15 +29,51 @@ export const Navbar = () => {
 		//e.preventDefault();
 	};
 
-	const handleSubmit = e => {
-		e.preventDefault();
-
-		// your code here...
-
-		setInput("");
+	const handleArrows = e => {
+		let position = cont;
+		if (suggestions.length && e.key === "ArrowDown") {
+			setCont(position + 1);
+			setSelected({ key: position });
+			// "Down" : e.key === "ArrowUp" ? "Up" : "otra";
+		} else if (suggestions.length && e.key === "ArrowUp") {
+			setCont(position - 1);
+			setSelected({ key: position });
+		}
+		console.log(selected);
 	};
 
-	const maxlenName = 15;
+	const handleDel = () => {
+		setInput("");
+		setSearchDel(false);
+		setSuggestions([]);
+	};
+
+	const handleSearchOnChange = event => {
+		setSearchDel(true);
+		let userInput = event.target.value;
+		setInput(userInput);
+		let array = [];
+
+		if (userInput != "") {
+			array = itemsList.filter(element => element.name.toLowerCase().startsWith(userInput.toLowerCase()));
+			setSuggestions(array);
+		} else {
+			setSuggestions(array);
+			setSearchDel(false);
+		}
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (input != "") {
+			let userItem = itemsList.find(elem => elem.name.toLowerCase() === input.toLowerCase());
+			if (userItem) {
+				history.push(`/details/${userItem.category}/${userItem.uid}`);
+				setInput(userItem.name);
+				setSuggestions([]);
+			}
+		}
+	};
 
 	const getName = (category, uid) => {
 		// search the element in store[category] and returns his name.
@@ -41,7 +87,7 @@ export const Navbar = () => {
 
 	return (
 		<div className="container-fluid sticky-top nav-wrapper">
-			<nav className="container navbar navbar-expand-lg p-2">
+			<nav className="container navbar navbar-expand-lg py-2">
 				<div className="container-fluid">
 					<Link to="/" onClick={topFunction}>
 						<img src={starwarsImage} width="100" />
@@ -110,18 +156,44 @@ export const Navbar = () => {
 								</div>
 							</li>
 						</ul>
-						<form className="d-flex" onSubmit={handleSubmit}>
+						<form className="d-flex search-form" onSubmit={handleSubmit} onKeyDown={handleArrows}>
+							<div className="search-icon">
+								<i className="fas fa-search"></i>
+							</div>
+							{searchDel ? (
+								<button className="search-cross-btn" onClick={handleDel}>
+									×
+								</button>
+							) : null}
 							<input
-								onChange={e => setInput(e.target.value)}
+								onChange={handleSearchOnChange}
 								value={input}
-								className="form-control me-2"
+								className="form-control search-input"
 								type="search"
-								placeholder="Search"
+								placeholder="Search Star Wars..."
 								aria-label="Search"
 							/>
-							<button className="btn btn-outline-info" type="submit" style={{ whiteSpace: "nowrap" }}>
-								<i className="fas fa-search pe-2"></i>Search
-							</button>
+							<ul className="autocomplete">
+								{suggestions.map((elem, idx) => {
+									console.log("selected: " + selected.key + typeof selected.key);
+									console.log("idx: " + idx + typeof idx);
+									return (
+										<li key={idx}>
+											<Link
+												className={
+													"suggestion-link " + selected.key === idx ? "suggestion-active" : ""
+												}
+												to={"/details/" + elem.category + "/" + elem.uid}
+												onClick={() => {
+													setInput(elem.name);
+													setSuggestions([]);
+												}}>
+												{elem.name}
+											</Link>
+										</li>
+									);
+								})}
+							</ul>
 						</form>
 					</div>
 				</div>
