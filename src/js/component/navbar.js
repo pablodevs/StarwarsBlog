@@ -180,9 +180,10 @@ export const Navbar = () => {
 									return (
 										<li key={idx}>
 											<Link
-												className={
-													"suggestion-link " + selected.key === idx ? "suggestion-active" : ""
-												}
+												// className={
+												// 	"suggestion-link " + selected.key === idx ? "suggestion-active" : ""
+												// }
+												className="suggestion-link"
 												to={"/details/" + elem.category + "/" + elem.uid}
 												onClick={() => {
 													setInput(elem.name);
