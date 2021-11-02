@@ -10,16 +10,14 @@ export const Navbar = () => {
 	const [input, setInput] = useState("");
 	const [suggestions, setSuggestions] = useState([]);
 	const [searchDel, setSearchDel] = useState(false);
-	const [cont, setCont] = useState(-1);
-	const [selected, setSelected] = useState({ key: null });
+	const [selected, setSelected] = useState(-1);
 
 	const itemsList = [...store.characters, ...store.planets, ...store.vehicles];
 	let history = useHistory();
 	const maxlenName = 15;
 
 	const topFunction = () => {
-		setInput("");
-		setSearchDel(false);
+		resetHooks();
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
 	};
@@ -29,23 +27,34 @@ export const Navbar = () => {
 		//e.preventDefault();
 	};
 
-	const handleArrows = e => {
-		let position = cont;
-		if (suggestions.length && e.key === "ArrowDown") {
-			setCont(position + 1);
-			setSelected({ key: position });
-			// "Down" : e.key === "ArrowUp" ? "Up" : "otra";
-		} else if (suggestions.length && e.key === "ArrowUp") {
-			setCont(position - 1);
-			setSelected({ key: position });
+	const handleSearchKeyDown = e => {
+		if (e.key === "Enter") {
+			if (selected === -1) {
+				if (input != "") {
+					let userItem = itemsList.find(elem => elem.name.toLowerCase() === input.toLowerCase());
+					if (userItem) {
+						setInput(userItem.name);
+						setSuggestions([]);
+						history.push(`/details/${userItem.category}/${userItem.uid}`);
+					}
+				}
+			} else {
+				setSuggestions([]);
+				setSelected(-1);
+				history.push(`/details/${suggestions[selected].category}/${suggestions[selected].uid}`);
+			}
+		} else if (suggestions.length) {
+			if (e.key === "ArrowDown") selected === suggestions.length - 1 ? setSelected(0) : setSelected(selected + 1);
+			else if (e.key === "ArrowUp")
+				selected === 0 || selected === -1 ? setSelected(suggestions.length - 1) : setSelected(selected - 1);
 		}
-		console.log(selected);
 	};
 
-	const handleDel = () => {
+	const resetHooks = () => {
 		setInput("");
 		setSearchDel(false);
 		setSuggestions([]);
+		setSelected(-1);
 	};
 
 	const handleSearchOnChange = event => {
@@ -60,18 +69,6 @@ export const Navbar = () => {
 		} else {
 			setSuggestions(array);
 			setSearchDel(false);
-		}
-	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		if (input != "") {
-			let userItem = itemsList.find(elem => elem.name.toLowerCase() === input.toLowerCase());
-			if (userItem) {
-				history.push(`/details/${userItem.category}/${userItem.uid}`);
-				setInput(userItem.name);
-				setSuggestions([]);
-			}
 		}
 	};
 
@@ -132,6 +129,7 @@ export const Navbar = () => {
 													className="dropdown-item d-flex"
 													style={{ width: "12em" }}>
 													<Link
+														onClick={resetHooks}
 														className="flex-grow-1 fav-link"
 														to={"/details/" + elem.category + "/" + elem.id}>
 														<span className="hola">{getName(elem.category, elem.id)}</span>
@@ -156,12 +154,12 @@ export const Navbar = () => {
 								</div>
 							</li>
 						</ul>
-						<form className="d-flex search-form" onSubmit={handleSubmit} onKeyDown={handleArrows}>
+						<form className="d-flex search-form" onKeyDown={handleSearchKeyDown}>
 							<div className="search-icon">
 								<i className="fas fa-search"></i>
 							</div>
 							{searchDel ? (
-								<button className="search-cross-btn" onClick={handleDel}>
+								<button className="search-cross-btn" onClick={resetHooks}>
 									×
 								</button>
 							) : null}
@@ -175,19 +173,18 @@ export const Navbar = () => {
 							/>
 							<ul className="autocomplete">
 								{suggestions.map((elem, idx) => {
-									console.log("selected: " + selected.key + typeof selected.key);
-									console.log("idx: " + idx + typeof idx);
 									return (
 										<li key={idx}>
 											<Link
-												// className={
-												// 	"suggestion-link " + selected.key === idx ? "suggestion-active" : ""
-												// }
-												className="suggestion-link"
+												className={`suggestion-link ${
+													selected === idx ? "suggestion-active" : ""
+												}`}
+												// className="suggestion-link"
 												to={"/details/" + elem.category + "/" + elem.uid}
 												onClick={() => {
 													setInput(elem.name);
 													setSuggestions([]);
+													setSelected(-1);
 												}}>
 												{elem.name}
 											</Link>
