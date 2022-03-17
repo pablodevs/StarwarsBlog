@@ -1,15 +1,13 @@
-# 👽 Aliens game using Javascript, HTML/CSS 👽
-
-The game goal is to KILL all the aliens by clicking on them.
+#🛸 Star Wars Blog using ReactJS, HTML/SASS 👽
 
 ### * *Link to the page:* - [click here](https://starwarsblog.herokuapp.com/)
 
 ## Languages 🛠️
 
 * [HTML](https://es.wikipedia.org/wiki/HTML5)
-* [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
+* [SASS](https://sass-lang.com/)
 * [Bootstrap](https://getbootstrap.com/)
-* [Javasript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+* [Javasript](https://es.reactjs.org/)
 
 ## Authors ✒️
 
