@@ -1,4 +1,4 @@
-# 🛸 Star Wars Blog using ReactJS, HTML/SASS 👽
+# 🛸 Star Wars Blog 🌌
 
 ### *Link to the page:* [click here](https://starwarsblog.herokuapp.com/)
 
