@@ -1,6 +1,6 @@
-#🛸 Star Wars Blog using ReactJS, HTML/SASS 👽
+# 🛸 Star Wars Blog using ReactJS, HTML/SASS 👽
 
-### * *Link to the page:* - [click here](https://starwarsblog.herokuapp.com/)
+### *Link to the page:* [click here](https://starwarsblog.herokuapp.com/)
 
 ## Languages 🛠️
 
@@ -33,4 +33,4 @@ $ npm run start
 ```
 
 ---
-Made with ❤️ by [peibol888](https://github.com/peibol888) 😊
+Made with ❤️ by [pablodevs](https://github.com/pablodevs) 😊
